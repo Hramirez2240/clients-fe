@@ -1,0 +1,26 @@
+nz-layout{
+  background-color: #fff;
+}
+
+nz-header{
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+nz-card{
+  border-color: #000;
+  font-size: 1rem;
+}
+
+.add-button{
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: space-between;
+}

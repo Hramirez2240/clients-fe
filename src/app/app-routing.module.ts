@@ -6,7 +6,7 @@ import { AddressComponent } from './pages/address/address.component';
 const routes: Routes = [
   {path: '', redirectTo: 'clients', pathMatch: 'full'},
   {path: 'clients', component: ClientComponent},
-  {path: 'address', component: AddressComponent}
+  {path: 'address/:id', component: AddressComponent}
 ];
 
 @NgModule({

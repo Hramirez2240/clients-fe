@@ -4,6 +4,7 @@ import { ClientService } from 'src/app/shared/services/client.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -20,7 +21,8 @@ export class ClientComponent implements OnInit {
     private readonly _clientService: ClientService,
     private readonly _modal: NzModalService,
     private readonly _message: NzMessageService,
-    private readonly _formBuilder: NonNullableFormBuilder
+    private readonly _formBuilder: NonNullableFormBuilder,
+    private readonly _router: Router
   )
   {}
 
@@ -47,6 +49,10 @@ export class ClientComponent implements OnInit {
       this.getClientsList();
     })
   };
+
+  async redirectToAddressList(clientId: string){
+    await this._router.navigate(['address', clientId]);
+  }
 
   createClient(request: Client){
     this.isLoading = true;

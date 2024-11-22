@@ -19,6 +19,10 @@ export class BaseService<T extends BaseModel>{
     return this.http.get<BaseResponse<T[]>>(this.baseUrl);
   }
 
+  getById(id: string): Observable<BaseResponse<T>>{
+    return this.http.get<BaseResponse<T>>(`${this.baseUrl}/${id}`);
+  }
+
   post(request: T): Observable<BaseResponse<T>>{
     return this.http.post<BaseResponse<T>>(this.baseUrl, request);
   }

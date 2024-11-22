@@ -52,7 +52,7 @@
         <p>Correo: {{client.email}}</p>
         <p>Teléfono: {{client.phoneNumber}}</p>
         <div class="btn-container">
-          <button><span nz-icon nzType="eye" nzTheme="outline"></span></button>
+          <button (click)="redirectToAddressList(client.id)"><span nz-icon nzType="eye" nzTheme="outline"></span></button>
           <button><span nz-icon nzType="edit" nzTheme="outline"></span></button>
           <button (click)="showDeleteConfirm(client.id, client.userName)"><span nz-icon nzType="delete" nzTheme="outline"></span></button>
         </div>

@@ -1,1 +1,55 @@
-<p>address works!</p>
+<nz-layout>
+  <nz-header>
+    Listado de direcciones de {{clientInformation}}
+    <button class="add-button" nz-button nzType="default" (click)="showModal()">Agregar</button>
+    <nz-modal
+    nzOkText="Guardar"
+    nzCancelText="Cancelar"
+    [(nzVisible)]="isModalVisible"
+    nzTitle="Agregar nueva dirección"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="createAddress(validateForm.value)"
+    [nzOkLoading]="isLoading">
+  <form *nzModalContent nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>País</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="country" id="country" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Ciudad</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="city" id="city" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Calle</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="street" id="street" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Código postal</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="postalCode" id="postalCode" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  </nz-modal>
+  </nz-header>
+  <div nz-row [nzGutter]="6">
+    <div *ngFor="let address of addresses" nz-col [nzSpan]="6">
+      <nz-card [nzTitle]="address.country">
+        <p>Ciudad: {{address.city}}</p>
+        <p>Calle: {{address.street}}</p>
+        <p>Código postal: {{address.postalCode}}</p>
+        <div class="btn-container">
+          <button><span nz-icon nzType="edit" nzTheme="outline"></span></button>
+          <button (click)="showDeleteConfirm(address.id)"><span nz-icon nzType="delete" nzTheme="outline"></span></button>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+</nz-layout>
+
