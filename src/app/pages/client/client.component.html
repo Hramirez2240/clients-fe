@@ -1,0 +1,62 @@
+<nz-layout>
+  <nz-header>
+    Listado de clientes
+    <button class="add-button" nz-button nzType="default" (click)="showModal()">Agregar</button>
+    <nz-modal
+    nzOkText="Guardar"
+    nzCancelText="Cancelar"
+    [(nzVisible)]="isModalVisible"
+    nzTitle="Agregar nuevo cliente"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="createClient(validateForm.value)"
+    [nzOkLoading]="isLoading">
+  <form *nzModalContent nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Usuario</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="userName" id="userName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Nombre</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="firstName" id="firstName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Apellido</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="lastName" id="lastName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Correo</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="email" id="email" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Teléfono</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="phoneNumber" id="phoneNumber" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  </nz-modal>
+  </nz-header>
+  <div nz-row [nzGutter]="6">
+    <div *ngFor="let client of clients" nz-col [nzSpan]="6">
+      <nz-card [nzTitle]="client.userName">
+        <p>Nombre(s): {{client.firstName}}</p>
+        <p>Apellido(s): {{client.lastName}}</p>
+        <p>Correo: {{client.email}}</p>
+        <p>Teléfono: {{client.phoneNumber}}</p>
+        <div class="btn-container">
+          <button><span nz-icon nzType="eye" nzTheme="outline"></span></button>
+          <button><span nz-icon nzType="edit" nzTheme="outline"></span></button>
+          <button (click)="showDeleteConfirm(client.id, client.userName)"><span nz-icon nzType="delete" nzTheme="outline"></span></button>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+</nz-layout>
